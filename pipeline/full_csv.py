@@ -1,7 +1,8 @@
 """Cleaned ads + per-creative Claude labels -> CSV (no Jev)."""
 import csv, json, sys
 from collections import OrderedDict
-from joko_full_labels import G
+import importlib
+G = importlib.import_module(sys.argv[3]).G
 AW = ["unaware", "problem_aware", "solution_aware", "product_aware", "most_aware"]
 ads, out = sys.argv[1], sys.argv[2]
 groups = OrderedDict()
