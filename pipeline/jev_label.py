@@ -8,12 +8,13 @@ URL = "https://openrouter.ai/api/v1/systemone"
 MODEL = "typesafe/jev-1.13"
 
 HOOKS = {
-    "pain_point": "Opens on a problem, frustration or loss the viewer has (e.g. overpaying, losing money).",
-    "bold_claim": "Opens with a strong, surprising or absolute claim or number.",
-    "curiosity": "Opens with a teaser or open loop that makes the viewer want to find out more.",
-    "social_proof": "Opens with other people's results, testimonials, ratings or user counts.",
-    "how_to": "Opens by promising to show how to achieve something step by step.",
-    "offer": "Opens with a discount, bonus, free trial or other concrete deal.",
+    "pain_point": "Names a specific problem the viewer is living with right now (e.g. 'les courses coûtent trop cher', 'tu perds de l'argent') and opens on that frustration. Not just a benefit or a deal.",
+    "bold_claim": "Opens with a strong, absolute or surprising statement or number that is not about the viewer's problem (e.g. 'Payer le bon prix à chaque achat', 'chaque dépense vous rapporte').",
+    "curiosity": "Opens with a teaser or open loop that withholds the answer (e.g. 'N'achetez rien sur Amazon avant de voir ça', 'Il te reste combien à la fin du mois ?').",
+    "question": "Opens with a direct question to the viewer that invites a yes/no or 'what if' reflection (e.g. 'Et si vos achats vous rapportaient du cashback ?', 'Pourquoi payer plus quand tu peux payer moins ?').",
+    "social_proof": "Opens with other people's results, testimonials, ratings or user counts (e.g. 'Déjà 5 millions d'utilisateurs').",
+    "how_to": "Opens by promising to show the viewer how to do something (e.g. 'Je te montre comment gagner de l'argent sur tes courses', 'Toi aussi tu peux...').",
+    "offer": "Opens with a discount, bonus, free trial or other concrete deal stated as the very first thing.",
 }
 OFFERS = {
     "discount": "A percentage or amount off, or a coupon.",
