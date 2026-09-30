@@ -7,7 +7,7 @@ J = {r["ad_id"]: r for r in json.load(open(jev))}
 def ugc_of(a, j):
     if a["format"] == "video" and not a["video_transcript"]:
         return "unknown"
-    return "yes" if j["jev_is_ugc"] >= 0.7 else "no"
+    return "yes" if j["jev_is_ugc"] >= 0.65 else "no"
 
 
 rows = []
