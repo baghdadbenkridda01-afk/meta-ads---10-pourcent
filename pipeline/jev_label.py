@@ -8,9 +8,9 @@ URL = "https://openrouter.ai/api/v1/systemone"
 MODEL = "typesafe/jev-1.13"
 
 HOOKS = {
-    "pain_point": "Names a specific problem the viewer is living with right now (e.g. 'les courses coûtent trop cher', 'tu perds de l'argent') and opens on that frustration. Not just a benefit or a deal.",
+    "pain_point": "Names a specific problem the viewer is living with right now (e.g. 'les courses coûtent trop cher', 'mon budget est toujours à sec') and opens on that frustration. Not just a benefit or a deal.",
     "bold_claim": "Opens with a strong, absolute or surprising statement or number that is not about the viewer's problem (e.g. 'Payer le bon prix à chaque achat', 'chaque dépense vous rapporte').",
-    "curiosity": "Opens with a teaser or open loop that withholds the answer (e.g. 'N'achetez rien sur Amazon avant de voir ça', 'Il te reste combien à la fin du mois ?').",
+    "curiosity": "Opens with a teaser or open loop that withholds the answer (e.g. 'N'achetez rien sur Amazon avant de voir ça', 'T'as pas Joko ? Alors t'as sûrement déjà perdu 200€' which hints at something the viewer is missing without saying what).",
     "question": "Opens with a direct question to the viewer that invites a yes/no or 'what if' reflection (e.g. 'Et si vos achats vous rapportaient du cashback ?', 'Pourquoi payer plus quand tu peux payer moins ?').",
     "social_proof": "Opens with other people's results, testimonials, ratings or user counts (e.g. 'Déjà 5 millions d'utilisateurs').",
     "how_to": "Opens by promising to show the viewer how to do something (e.g. 'Je te montre comment gagner de l'argent sur tes courses', 'Toi aussi tu peux...').",
@@ -33,7 +33,6 @@ ANGLES = {
     "authority": "Leads with expertise, credentials, press or official backing.",
     "curiosity": "Leads with a teaser or secret.",
     "comparison": "Leads with a comparison to alternatives or to life before/after.",
-    "ugc": "Leads with an everyday person talking to camera or sharing their own experience.",
     "other": "None of the above.",
 }
 
@@ -41,6 +40,8 @@ ANGLES = {
 def questions():
     return {
         "hook": {"type": "choice", "instructions": "Which type of hook does this ad open with? Judge the first line of the copy and, for video, the first words of the spoken transcript.", "criteria": HOOKS},
+        "is_ugc": {"type": "noul", "instructions": "Is this ad styled as user-generated content: an everyday person speaking in the first person or chatting with someone, sharing their own experience, rather than a brand announcement? Use the video transcript when present, for example 'je', 'moi', 'toi aussi', a dialogue between two people.",
+                   "criteria": {"true": "Casual first-person talk, testimonial or dialogue between ordinary people.", "false": "Brand voice, on-screen text only, or a polished announcement."}},
         "angle": {"type": "choice", "instructions": "What is the main persuasion angle of this ad?", "criteria": ANGLES},
         "offer": {"type": "choice", "instructions": "What kind of offer does this ad make to the viewer?", "criteria": OFFERS},
         "awareness": {"type": "score", "instructions": "What is the target viewer's level of awareness (Eugene Schwartz) that this ad is written for?",
@@ -78,7 +79,7 @@ def label(ad):
     r = call(ad)
     a = r["answers"]
     return {"ad_id": ad["ad_id"], "jev_hook": a["hook"]["choice"], "jev_hook_conf": round(a["hook"]["confidence"], 2),
-            "jev_angle": a["angle"]["choice"], "jev_angle_conf": round(a["angle"]["confidence"], 2),
+            "jev_is_ugc": a["is_ugc"]["noul"], "jev_angle": a["angle"]["choice"], "jev_angle_conf": round(a["angle"]["confidence"], 2),
             "jev_offer": a["offer"]["choice"], "jev_offer_conf": round(a["offer"]["confidence"], 2),
             "jev_awareness_score": a["awareness"], "jev_cta_strength": a["cta_strength"],
             "jev_destination_is_app_store": a["landing_page"], "jev_model": r["model"], "jev_cost_usd": r["usage"].get("cost")}
