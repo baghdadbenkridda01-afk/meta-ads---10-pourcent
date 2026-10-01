@@ -39,7 +39,7 @@ function para(s, text, x, y, w, h, o = {}) {
   s.addImage({ path: img("image6.png"), x: 0.8, y: 2.85, w: 0.38, h: 0.38 });
   para(s, "some insights from 10%, Joko & Ibotta, scrapées le 30 septembre 2026", 1.35, 2.82, 5.6, 0.5, { size: 13, bold: true, valign: "middle" });
   s.addImage({ path: img("image6.png"), x: 0.8, y: 3.55, w: 0.38, h: 0.38 });
-  para(s, "J'ai récupéré toutes les pubs actives de 10%, Joko et Ibotta, soit 335 pubs. J'ai transcrit les vidéos et classé chaque pub par hook, angle, niveau de conscience et format.", 1.35, 3.5, 5.6, 1.4, { size: 12.5 });
+  para(s, "J'ai récupéré toutes les pubs actives de 10%, Joko et Ibotta, soit 337 pubs. J'ai transcrit les vidéos et classé chaque pub par hook, angle, niveau de conscience et format.", 1.35, 3.5, 5.6, 1.4, { size: 12.5 });
   s.addImage({ path: img("image3.png"), x: 6.55, y: 1.55, w: 3.15, h: 3.5 });
 
   // ---------- 2. Testing speed ----------
